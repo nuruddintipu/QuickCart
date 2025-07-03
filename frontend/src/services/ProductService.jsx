@@ -47,6 +47,14 @@ const productService = {
     getAllProducts: async () => {
         await new Promise((res) => setTimeout(res, 1000));
         return mockProducts;
+    },
+    getProductById: async (id) => {
+        await new Promise((res) => setTimeout(res, 1000));
+        const product = mockProducts.find((product) => product.id === Number(id));
+        console.log(id);
+        if (!product) throw new Error("Product not found");
+
+        return product;
     }
 };
 

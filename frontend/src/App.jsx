@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRouter from "./routes/AppRouter.jsx";
+import {ToastContainer} from "react-toastify";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
         <Router>
             <AppRouter />
         </Router>
+        <ToastContainer position="bottom-right"  autoClose={2000} />
     </>
   )
 }
