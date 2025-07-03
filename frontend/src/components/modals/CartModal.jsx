@@ -2,14 +2,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {Button, Offcanvas, Table} from "react-bootstrap";
 import {clearCart, decreaseItem, increaseItem, removeFromCart} from "../../features/cartSlice.jsx";
+import CheckoutModal from "./CheckoutModal.jsx";
 
 const CartModal = () => {
     const dispatch = useDispatch();
     const [showCart, setShowCart] = useState(false);
+    const [showCheckout, setShowCheckout] = useState(false);
 
     const { cartItems, totalAmount } = useSelector((state) => state.cart);
 
     const handleShowCart = () => setShowCart(!showCart);
+
+    const handleCheckoutShow = () => setShowCheckout(!showCheckout);
 
     return (
         <>
@@ -80,9 +84,10 @@ const CartModal = () => {
                             <Button variant="secondary" onClick={() => dispatch(clearCart())}>
                                 Clear Cart
                             </Button>
-                            <Button variant="success" className="mx-3">
+                            <Button variant="success" className="mx-3" onClick={handleCheckoutShow}>
                                 Proceed to checkout
                             </Button>
+                            <CheckoutModal show={showCheckout} handleClose={handleCheckoutShow} />
                         </>
                     )}
                 </Offcanvas.Body>
