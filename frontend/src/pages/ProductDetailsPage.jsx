@@ -5,6 +5,7 @@ import {toast} from "react-toastify";
 import {useEffect} from "react";
 import {fetchProductById} from "../features/productsSlice.jsx";
 import {Button, Col, Container, Row, Image} from "react-bootstrap";
+import Loader from "../components/loader/Loader.jsx";
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
@@ -16,7 +17,7 @@ const ProductDetailsPage = () => {
     }, [dispatch, id]);
 
 
-    if(loading) return <div className="text-center mt-5">Loading.....</div>
+    if(loading) return <Loader text={"Loading..."} />
     if(error) return <div className="text-center mt-5">{error}</div>;
     if(!selectedProduct) return null;
 

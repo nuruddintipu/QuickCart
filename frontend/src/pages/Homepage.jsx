@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "../features/productsSlice";
 import ProductCard from "../components/product/ProductCard";
 import { Link } from "react-router-dom";
+import Loader from "../components/loader/Loader.jsx";
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -15,13 +16,14 @@ const Homepage = () => {
 
     const featuredProducts = products.slice(0, 8);
 
+    if(loading) return <Loader text={"Loading..."} />
+
     return (
         <Container className="mt-4">
             <h2 className="mb-4 text-center">Welcome to QuickCart</h2>
 
             <h4 className="mb-3">Featured Products</h4>
 
-            {loading && <p>Loading featured products...</p>}
             {error && <Alert variant="danger">{error}</Alert>}
 
             <Row xs={1} sm={2} md={3} lg={4} className="g-4">
