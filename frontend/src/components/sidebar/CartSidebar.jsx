@@ -4,6 +4,7 @@ import { Button, Table } from "react-bootstrap";
 import { clearCart, decreaseItem, increaseItem, removeFromCart } from "../../features/cartSlice.jsx";
 import CheckoutModal from "../modals/CheckoutModal.jsx";
 import "./Sidebar.css";
+import {toast} from "react-toastify";
 
 const CartSidebar = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
@@ -12,6 +13,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
     const [showCheckout, setShowCheckout] = React.useState(false);
 
     const toggleCheckout = () => setShowCheckout((prev) => !prev);
+
+    const handleRemoveFromCart = (product) => {
+        dispatch(removeFromCart(product));
+        toast.info('Item removed from cart.');
+    };
 
     return (
         <div className={`sidebar ${isOpen ? "open" : ""}`}>
@@ -66,7 +72,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                                         <Button
                                             variant="danger"
                                             size="sm"
-                                            onClick={() => dispatch(removeFromCart(product))}
+                                            onClick={() => handleRemoveFromCart(product)}
                                         >
                                             x
                                         </Button>
