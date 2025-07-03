@@ -19,7 +19,7 @@ const ProductCatalogPage = () => {
             {loading && <p>Loading...</p>}
             {error && <Alert variant="danger">{error}</Alert>}
 
-            <Row>
+            <Row xs={1} sm={2} md={3} lg={4}>
                 {products.map((product) => (
                     <ProductCard product={product} key={product.id} />
                 ))}

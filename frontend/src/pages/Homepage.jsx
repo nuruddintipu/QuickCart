@@ -13,7 +13,7 @@ const Homepage = () => {
         dispatch(fetchAllProducts());
     }, [dispatch]);
 
-    const featuredProducts = products.slice(0, 6);
+    const featuredProducts = products.slice(0, 8);
 
     return (
         <Container className="mt-4">
@@ -24,7 +24,7 @@ const Homepage = () => {
             {loading && <p>Loading featured products...</p>}
             {error && <Alert variant="danger">{error}</Alert>}
 
-            <Row xs={1} sm={2} md={3} lg={3} className="g-4">
+            <Row xs={1} sm={2} md={3} lg={4} className="g-4">
                 {featuredProducts.map((product) => (
                     <Col key={product.id}>
                         <ProductCard product={product} />
