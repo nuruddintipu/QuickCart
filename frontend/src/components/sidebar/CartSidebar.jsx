@@ -78,15 +78,13 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
                         <div className="d-flex justify-content-between align-items-center">
                             <h5>Total: ${totalAmount.toFixed(2)}</h5>
-                            <div>
-                                <Button variant="secondary" onClick={() => dispatch(clearCart())} className="me-2">
-                                    Clear Cart
-                                </Button>
-                                <Button variant="success" onClick={toggleCheckout}>
-                                    Proceed to Checkout
-                                </Button>
-                            </div>
                         </div>
+                        <Button variant="secondary" onClick={() => dispatch(clearCart())} className="me-2">
+                            Clear Cart
+                        </Button>
+                        <Button variant="success" onClick={toggleCheckout}>
+                            Proceed to Checkout
+                        </Button>
                     </>
                 )}
             </div>
