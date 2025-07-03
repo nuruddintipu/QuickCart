@@ -8,6 +8,7 @@ const Footer = () => {
         <footer className="bg-light py-3 mt-5 border-top">
             <Container className="text-center text-muted small">
                 <div>© {new Date().getFullYear()} QuickCart. All rights reserved.</div>
+                Developed by
                 <a
                     href="https://github.com/nuruddintipu"
                     target="_blank"
