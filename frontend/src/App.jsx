@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRouter from "./routes/AppRouter.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        Hello World!
-      </div>
+        <Router>
+            <AppRouter />
+        </Router>
     </>
   )
 }
