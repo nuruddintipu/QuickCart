@@ -17,7 +17,7 @@ const Homepage = () => {
 
     return (
         <Container className="mt-4">
-            <h2 className="mb-4">Welcome to QuickCart</h2>
+            <h2 className="mb-4 text-center">Welcome to QuickCart</h2>
 
             <h4 className="mb-3">Featured Products</h4>
 
