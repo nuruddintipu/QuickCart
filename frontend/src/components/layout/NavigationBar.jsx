@@ -1,6 +1,7 @@
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {ROUTE_PATHS} from "../../routes/routeConstants.jsx";
+import CartModal from "../modals/CartModal.jsx";
 
 const NavigationBar = () => {
     return (
@@ -14,7 +15,9 @@ const NavigationBar = () => {
                     <Nav className="ms-auto">
                         <Nav.Link  as={Link} to={ROUTE_PATHS.HOMEPAGE}>Home</Nav.Link>
                         <Nav.Link as={Link} to={ROUTE_PATHS.PRODUCTS}>Products</Nav.Link>
-                        <Nav.Link as={Link} to="/">Cart</Nav.Link>
+                    </Nav>
+                    <Nav className="me-auto mb-2 mb-lg-0">
+                        <CartModal />
                     </Nav>
                 </Navbar.Collapse>
             </Container>
