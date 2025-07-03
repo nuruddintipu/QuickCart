@@ -5,8 +5,11 @@ import { clearCart, decreaseItem, increaseItem, removeFromCart } from "../../fea
 import CheckoutModal from "../modals/CheckoutModal.jsx";
 import "./Sidebar.css";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_PATHS} from "../../routes/routeConstants.jsx";
 
 const CartSidebar = ({ isOpen, onClose }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { cartItems, totalAmount } = useSelector((state) => state.cart);
 
@@ -17,6 +20,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product));
         toast.info('Item removed from cart.');
+    };
+
+    const onClickBrowseProduct = () => {
+        navigate(ROUTE_PATHS.PRODUCTS);
+        onClose();
     };
 
     return (
@@ -30,7 +38,10 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
             <div className="p-3" style={{ overflowY: "auto", height: "calc(100vh - 100px)" }}>
                 {cartItems.length === 0 ? (
-                    <p>Your cart is empty.</p>
+                    <>
+                        <p>Your cart is empty.</p>
+                        <Button onClick={onClickBrowseProduct}>Browse Product</Button>
+                    </>
                 ) : (
                     <>
                         <Table striped bordered hover responsive size="sm" className="mb-3">
