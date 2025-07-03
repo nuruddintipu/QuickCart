@@ -1,11 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {toast} from "react-toastify";
+import { clearCartFromLocalStorage, loadCartFromLocalStorage, saveCartToLocalStorage } from "../utils/localStorageUtils.jsx";
 
-const initialState = {
+const defaultState = {
     cartItems: [],
     totalItems: 0,
     totalAmount: 0,
 };
+
+const initialState = loadCartFromLocalStorage() || defaultState;
 
 const cartSlice = createSlice({
     name: "cart",
@@ -19,6 +22,8 @@ const cartSlice = createSlice({
 
             state.totalItems += 1;
             state.totalAmount += item.price;
+
+            saveCartToLocalStorage(state);
         },
         removeFromCart: (state, action) => {
             const product = action.payload;
@@ -29,6 +34,8 @@ const cartSlice = createSlice({
             state.totalItems -= item.quantity;
             state.totalAmount -= item.price * item.quantity;
             state.cartItems = state.cartItems.filter((p) => p.id !== product.id);
+
+            saveCartToLocalStorage(state);
         },
         increaseItem: (state, action) => {
             const product = action.payload;
@@ -38,6 +45,8 @@ const cartSlice = createSlice({
             item.quantity += 1;
             state.totalItems += 1;
             state.totalAmount += item.price;
+
+            saveCartToLocalStorage(state);
         },
         decreaseItem: (state, action) => {
             const product = action.payload;
@@ -53,11 +62,15 @@ const cartSlice = createSlice({
 
             state.totalItems -= 1;
             state.totalAmount -= item.price;
+
+            saveCartToLocalStorage(state);
         },
         clearCart: (state) => {
             state.cartItems = [];
             state.totalAmount = 0;
             state.totalItems = 0;
+
+            clearCartFromLocalStorage();
         }
     }
 });
