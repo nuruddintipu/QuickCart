@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {toast} from "react-toastify";
 
 const initialState = {
     cartItems: [],
@@ -43,8 +44,10 @@ const cartSlice = createSlice({
             const item = state.cartItems.find((p) => p.id === product.id);
             if(!item) return;
 
-            if(item.quantity === 1)
+            if(item.quantity === 1) {
                 state.cartItems = state.cartItems.filter((p) => p.id !== product.id);
+                toast.info('Item removed from cart.');
+            }
             else
                 item.quantity -= 1;
 

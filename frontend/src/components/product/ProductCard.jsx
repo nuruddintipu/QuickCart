@@ -30,7 +30,13 @@ const ProductCard = ({ product }) => {
                     <Link to={productDetailsPath}
                           className="text-decoration-none text-dark"
                     >
-                        <Card.Title className="fs-6">{product.name}</Card.Title>
+                        <Card.Title
+                            className="fs-6 text-truncate"
+                            title={product.name}
+                            style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                        >
+                            {product.name}
+                        </Card.Title>
                     </Link>
                     <div className="mt-auto">
                         <Card.Text className="fw-semibold">${product.price.toFixed(2)}</Card.Text>
