@@ -1,9 +1,11 @@
 export const ROUTE_NAMES = {
     HOMEPAGE: "HOMEPAGE",
     PRODUCTS: "PRODUCTS",
+    PRODUCT_DESCRIPTION: "PRODUCT_DESCRIPTION",
 };
 
 export const ROUTE_PATHS = {
     [ROUTE_NAMES.HOMEPAGE]: "/",
     [ROUTE_NAMES.PRODUCTS]: "/products",
+    [ROUTE_NAMES.PRODUCT_DESCRIPTION]: "/products/:id",
 };
