@@ -1,12 +1,42 @@
-# React + Vite
+# QuickCart Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for QuickCart mini e-commerce application, built using **React** and configured with **Vite** for fast development and bundling.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Project Setup
+- **Framework:** React.js
+- **Libraries:** React Redux, Axios, React-Bootstrap
+- **Bundler:** Vite
+- **Styling:** Bootstrap and CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Getting Started
+
+### 1. Clone the Repo and navigate to frontend directory
+```bash
+  git clone https://github.com/nuruddintipu/QuickCart.git
+  cd quickcart/frontend
+```
+### 2. Install all dependencies with:
+ ```bash
+   npm install
+   ```
+### 3. Development Server
+
+Run the following command to start the development server:
+```bash 
+   npm run dev
+```
+By default, the application will be available at: [http://localhost:3000](http://localhost:3000)
+
+### Build for Production
+To create an optimized build, run:
+```bash 
+   npm run build
+```
+The production-ready files will be generated in the `dist` directory.
+
+## Configuration
+- Update the backend `BASE_URL` in the `src/services/api.jsx` file if needed to align with the backend server's address.

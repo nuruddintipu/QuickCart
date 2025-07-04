@@ -11,7 +11,8 @@ This project is part of the Qtec Solution Limited Frontend Developer Assessment.
 ## Tech Stack
 ### Frontend
 - **Framework:** React.Js
-- **Libraries:** Redux Toolkit, Axios, React-DOM, Vite
+- **Libraries:** Redux Toolkit, Axios, React-DOM
+- **Bundler:** Vite
 - **UI-Components:** React-Bootstrap
 - **Styling:** Bootstrap and CSS
 
