@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
                         </Card.Title>
                     </Link>
                     <div className="mt-auto">
-                        <Card.Text className="fw-semibold">${product.price.toFixed(2)}</Card.Text>
+                        <Card.Text className="fw-semibold">${Number(product.price).toFixed(2)}</Card.Text>
                         <Row>
                             <Button variant="primary" onClick={handleAddToCart} size="sm">Add to Cart</Button>
                         </Row>

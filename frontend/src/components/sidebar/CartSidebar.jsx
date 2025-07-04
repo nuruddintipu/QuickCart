@@ -5,8 +5,11 @@ import { clearCart, decreaseItem, increaseItem, removeFromCart } from "../../fea
 import CheckoutModal from "../modals/CheckoutModal.jsx";
 import "./Sidebar.css";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_PATHS} from "../../routes/routeConstants.jsx";
 
 const CartSidebar = ({ isOpen, onClose }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { cartItems, totalAmount } = useSelector((state) => state.cart);
 
@@ -17,6 +20,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product));
         toast.info('Item removed from cart.');
+    };
+
+    const onClickBrowseProduct = () => {
+        navigate(ROUTE_PATHS.PRODUCTS);
+        onClose();
     };
 
     return (
@@ -30,7 +38,10 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
             <div className="p-3" style={{ overflowY: "auto", height: "calc(100vh - 100px)" }}>
                 {cartItems.length === 0 ? (
-                    <p>Your cart is empty.</p>
+                    <>
+                        <p>Your cart is empty.</p>
+                        <Button onClick={onClickBrowseProduct}>Browse Product</Button>
+                    </>
                 ) : (
                     <>
                         <Table striped bordered hover responsive size="sm" className="mb-3">
@@ -47,7 +58,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                             {cartItems.map((product) => (
                                 <tr key={product.id}>
                                     <td>{product.name}</td>
-                                    <td>${product.price.toFixed(2)}</td>
+                                    <td>${Number(product.price).toFixed(2)}</td>
                                     <td>
                                         <div className="d-flex align-items-center gap-2">
                                             <Button
@@ -67,7 +78,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                                             </Button>
                                         </div>
                                     </td>
-                                    <td>${(product.price * product.quantity).toFixed(2)}</td>
+                                    <td>${(Number(product.price) * product.quantity).toFixed(2)}</td>
                                     <td>
                                         <Button
                                             variant="danger"
@@ -83,7 +94,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                         </Table>
 
                         <div className="d-flex justify-content-between align-items-center">
-                            <h5>Total: ${totalAmount.toFixed(2)}</h5>
+                            <h5>Total: ${Number(totalAmount).toFixed(2)}</h5>
                         </div>
                         <Button variant="secondary" onClick={() => dispatch(clearCart())} className="me-2">
                             Clear Cart
