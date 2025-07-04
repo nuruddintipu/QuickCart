@@ -1,16 +1,17 @@
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart} from "../features/cartSlice.jsx";
-import {toast} from "react-toastify";
 import {useEffect} from "react";
 import {fetchProductById} from "../features/productsSlice.jsx";
-import {Button, Col, Container, Row, Image} from "react-bootstrap";
+import {Button, Col, Container, Row, Image, Alert} from "react-bootstrap";
 import Loader from "../components/loader/Loader.jsx";
+import {useCart} from "../hooks/useCart.jsx";
+import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { selectedProduct, loading, error } = useSelector((state) => state.products);
+    const { add } = useCart();
 
     useEffect(() => {
         dispatch(fetchProductById(id));
@@ -18,7 +19,9 @@ const ProductDetailsPage = () => {
 
 
     if(loading) return <Loader text={"Loading..."} />
-    if(error) return <div className="text-center mt-5">{error}</div>;
+
+    if (error) return <ErrorMessage error={error} />;
+
     if(!selectedProduct) return null;
 
     const { name, description, price, image, category, brand, rating, stock } = selectedProduct;
@@ -38,10 +41,7 @@ const ProductDetailsPage = () => {
                     <p><strong>Rating:</strong> ⭐ {rating}</p>
                     <p><strong>In Stock:</strong> {stock} items</p>
 
-                    <Button variant="primary" onClick={()=> {
-                        dispatch(addToCart(selectedProduct));
-                        toast.success("Product Added");
-                    }}>
+                    <Button variant="primary" onClick={()=> add(selectedProduct)}>
                         Add To Cart
                     </Button>
                 </Col>

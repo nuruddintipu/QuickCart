@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import productService from "../services/ProductService.jsx";
+import productService from "../services/productService.jsx";
 
 const initialState = {
     products: [],
@@ -40,8 +40,9 @@ const productsSlice = createSlice({
                 state.products = action.payload;
             })
             .addCase(fetchAllProducts.rejected, (state, action) => {
-                state.error = action.payload;
                 state.loading = false;
+                state.error = action.payload || {message: 'Failed to fetch products'};
+                state.products = [];
             })
             .addCase(fetchProductById.pending, (state) => {
                 state.loading = true;
@@ -50,7 +51,6 @@ const productsSlice = createSlice({
             })
             .addCase(fetchProductById.fulfilled, (state, action) => {
                 state.selectedProduct = action.payload;
-                console.log(action.payload);
                 state.loading = false;
                 state.error = null;
             })

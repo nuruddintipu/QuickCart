@@ -1,26 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Button, Table } from "react-bootstrap";
-import { clearCart, decreaseItem, increaseItem, removeFromCart } from "../../features/cartSlice.jsx";
 import CheckoutModal from "../modals/CheckoutModal.jsx";
 import "./Sidebar.css";
-import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PATHS} from "../../routes/routeConstants.jsx";
+import {useCart} from "../../hooks/useCart.jsx";
 
 const CartSidebar = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { cartItems, totalAmount } = useSelector((state) => state.cart);
 
-    const [showCheckout, setShowCheckout] = React.useState(false);
-
-    const toggleCheckout = () => setShowCheckout((prev) => !prev);
-
-    const handleRemoveFromCart = (product) => {
-        dispatch(removeFromCart(product));
-        toast.info('Item removed from cart.');
-    };
+    const { cartItems, totalAmount, remove, clear, increase, decrease, showCheckout, toggleCheckout } = useCart();
 
     const onClickBrowseProduct = () => {
         navigate(ROUTE_PATHS.PRODUCTS);
@@ -64,7 +53,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                                             <Button
                                                 variant="outline-secondary"
                                                 size="sm"
-                                                onClick={() => dispatch(decreaseItem(product))}
+                                                onClick={() => decrease(product)}
                                             >
                                                 −
                                             </Button>
@@ -72,7 +61,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                                             <Button
                                                 variant="outline-secondary"
                                                 size="sm"
-                                                onClick={() => dispatch(increaseItem(product))}
+                                                onClick={() => increase(product)}
                                             >
                                                 +
                                             </Button>
@@ -83,7 +72,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                                         <Button
                                             variant="danger"
                                             size="sm"
-                                            onClick={() => handleRemoveFromCart(product)}
+                                            onClick={() => remove(product)}
                                         >
                                             x
                                         </Button>
@@ -96,7 +85,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                         <div className="d-flex justify-content-between align-items-center">
                             <h5>Total: ${Number(totalAmount).toFixed(2)}</h5>
                         </div>
-                        <Button variant="secondary" onClick={() => dispatch(clearCart())} className="me-2">
+                        <Button variant="secondary" onClick={() => clear()} className="me-2">
                             Clear Cart
                         </Button>
                         <Button variant="success" onClick={toggleCheckout}>
