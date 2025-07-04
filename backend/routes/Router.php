@@ -27,13 +27,11 @@ class Router {
         }
 
         if (!empty($allowedMethods)) {
-            http_response_code(405);
-            echo json_encode(["error" => "Method Not Allowed. Allowed: " . implode(', ', $allowedMethods)]);
+            Response::methodNotAllowedResponse(implode(', ', $allowedMethods));
             return;
         }
 
-        http_response_code(404);
-        echo json_encode(["error" => "Route not found."]);
+        Response::dataNotFoundResponse('No route found');
     }
 
     private function routeMatches($routePattern, $uri, &$matches = null) {
