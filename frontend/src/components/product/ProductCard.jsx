@@ -2,6 +2,7 @@ import {Card, Button, Col, Row} from "react-bootstrap";
 import { generatePath, Link } from "react-router-dom";
 import {ROUTE_PATHS} from "../../routes/routeConstants.jsx";
 import {useCart} from "../../hooks/useCart.jsx";
+import './ProductCard.css';
 
 
 const ProductCard = ({ product }) => {
@@ -15,12 +16,15 @@ const ProductCard = ({ product }) => {
         <Col className="col-md-4 mb-4" key={id}>
             <Card style={{ width: "200px" }} className="shadow-sm d-flex flex-column">
                 <Link to={productDetailsPath}>
-                    <Card.Img
-                        variant="top"
-                        src={image}
-                        alt={name}
-                        style={{ height: "200px", objectFit: "cover" }}
-                    />
+                    <div className="overflow-hidden" style={{ height: "200px" }}>
+                        <Card.Img
+                            className="product-image"
+                            variant="top"
+                            src={image}
+                            alt={name}
+                            style={{ height: "200px", objectFit: "cover" }}
+                        />
+                    </div>
                 </Link>
 
                 <Card.Body className="d-flex flex-column flex-grow-1">

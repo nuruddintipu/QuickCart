@@ -29,8 +29,8 @@ const ProductDetailsPage = () => {
     return (
         <Container className="mt-5">
             <Row>
-                <Col md={6}>
-                    <Image src={image} className="img-fluid h-100" alt={name} />
+                <Col md={6} className="overflow-hidden">
+                    <Image src={image} className="product-image img-fluid h-100" alt={name} />
                 </Col>
                 <Col md={6}>
                     <h2>{name}</h2>
