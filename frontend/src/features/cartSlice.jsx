@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {toast} from "react-toastify";
 import { clearCartFromLocalStorage, loadCartFromLocalStorage, saveCartToLocalStorage } from "../utils/localStorageUtils.jsx";
 
 const defaultState = {
@@ -40,27 +39,13 @@ const cartSlice = createSlice({
 
             saveCartToLocalStorage(state);
         },
-        increaseItem: (state, action) => {
-            const product = action.payload;
-            const item = state.cartItems.find((p) => p.id === product.id);
-            if(!item) return;
-            const price = Number(item.price);
-
-            item.quantity += 1;
-            state.totalItems += 1;
-            state.totalAmount += price;
-
-            saveCartToLocalStorage(state);
-        },
         decreaseItem: (state, action) => {
             const product = action.payload;
             const item = state.cartItems.find((p) => p.id === product.id);
             if(!item) return;
 
-            if(item.quantity === 1) {
+            if(item.quantity === 1)
                 state.cartItems = state.cartItems.filter((p) => p.id !== product.id);
-                toast.info('Item removed from cart.');
-            }
             else
                 item.quantity -= 1;
 
@@ -79,6 +64,6 @@ const cartSlice = createSlice({
     }
 });
 
-export const {addToCart, removeFromCart, increaseItem, decreaseItem, clearCart} = cartSlice.actions;
+export const {addToCart, removeFromCart, decreaseItem, clearCart} = cartSlice.actions;
 
 export default cartSlice.reducer;
