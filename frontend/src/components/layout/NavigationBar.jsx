@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ROUTE_PATHS } from "../../routes/routeConstants.jsx";
 import CartSidebar from "../sidebar/CartSidebar.jsx";
 import {useCart} from "../../hooks/useCart.jsx";
+import './NavBar.css';
 
 const NAV_LINKS = [
     { label: "Home", routePath: ROUTE_PATHS.HOMEPAGE },
