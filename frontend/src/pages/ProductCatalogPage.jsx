@@ -18,7 +18,7 @@ const ProductCatalogPage = () => {
 
     return (
         <Container>
-            <h2 className="mb-4">Product Catalog</h2>
+            <h2 className="mb-4 mt-3">Product Catalog</h2>
 
             {error && (<ErrorMessage error={error} />)}
 
