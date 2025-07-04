@@ -40,8 +40,9 @@ const productsSlice = createSlice({
                 state.products = action.payload;
             })
             .addCase(fetchAllProducts.rejected, (state, action) => {
-                state.error = action.payload;
                 state.loading = false;
+                state.error = action.payload || {message: 'Failed to fetch products'};
+                state.products = [];
             })
             .addCase(fetchProductById.pending, (state) => {
                 state.loading = true;
