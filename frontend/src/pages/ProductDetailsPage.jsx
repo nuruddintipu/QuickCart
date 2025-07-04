@@ -2,9 +2,10 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {fetchProductById} from "../features/productsSlice.jsx";
-import {Button, Col, Container, Row, Image} from "react-bootstrap";
+import {Button, Col, Container, Row, Image, Alert} from "react-bootstrap";
 import Loader from "../components/loader/Loader.jsx";
 import {useCart} from "../hooks/useCart.jsx";
+import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
@@ -18,7 +19,9 @@ const ProductDetailsPage = () => {
 
 
     if(loading) return <Loader text={"Loading..."} />
-    if(error) return <div className="text-center mt-5">{error}</div>;
+
+    if (error) return <ErrorMessage error={error} />;
+
     if(!selectedProduct) return null;
 
     const { name, description, price, image, category, brand, rating, stock } = selectedProduct;
