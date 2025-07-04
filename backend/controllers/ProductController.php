@@ -26,12 +26,6 @@ class ProductController{
         }
     }
 
-    private function getBaseUrl(){
-        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
-        return $scheme . '://' . $host;
-    }
-
     public function getProductById($id){
         try{
             $product = $this->productService->getProductById($id);
@@ -46,4 +40,9 @@ class ProductController{
         }
     }
 
+    private function getBaseUrl(){
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+        return $scheme . '://' . $host;
+    }
 }

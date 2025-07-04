@@ -12,7 +12,6 @@ class Response{
         return $response;
     }
 
-
     public static function respond($statusCode, $data){
         http_response_code($statusCode);
         echo json_encode($data);
