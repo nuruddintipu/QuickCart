@@ -2,8 +2,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ROUTE_PATHS } from "../../routes/routeConstants.jsx";
 import CartSidebar from "../sidebar/CartSidebar.jsx";
-import { useState } from "react";
-import {useSelector} from "react-redux";
+import {useCart} from "../../hooks/useCart.jsx";
 
 const NAV_LINKS = [
     { label: "Home", routePath: ROUTE_PATHS.HOMEPAGE },
@@ -11,10 +10,12 @@ const NAV_LINKS = [
 ];
 
 const NavigationBar = () => {
-    const [isCartOpen, setIsCartOpen] = useState(false);
-    const { cartItems } = useSelector((state) => state.cart);
 
-    const toggleCart = () => setIsCartOpen((prev) => !prev);
+    const { cartItemCount, toggleCart, isCartOpen, setIsCartOpen } = useCart();
+
+    const renderCartLabel = () => (
+        `🛒 Cart${cartItemCount > 0 ? ` (${cartItemCount})` : ""}`
+    );
 
     return (
         <>
@@ -35,7 +36,7 @@ const NavigationBar = () => {
                             ))}
 
                             <Nav.Link onClick={toggleCart} style={{ cursor: "pointer" }}>
-                                🛒 Cart {cartItems.length > 0 && `(${cartItems.length})`}
+                                {renderCartLabel()}
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
