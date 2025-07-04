@@ -109,7 +109,9 @@ Run the following command to start the development server:
 ```bash 
    npm run dev
 ```
-By default, the application will be available at: [http://localhost:3000](http://localhost:3000)
+- Update BASE_URL at [frontend/src/services/api.jsx](https://github.com/nuruddintipu/QuickCart/blob/master/frontend/src/services/api.jsx) to point to the backend server if needed
+
+-By default, the application will be available at: [http://localhost:3000](http://localhost:3000)
 
 ### Build for Production
 To create an optimized build, run:
@@ -121,5 +123,6 @@ The production-ready files will be generated in the `dist` directory.
 
 
 ## Author
+- Name: Nuruddin Tipu
 - Github: https://github.com/nuruddintipu
 - Email: nuruddintipu.connect@gmail.com
